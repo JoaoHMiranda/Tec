@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula03</title>
+</head>
+<body>
+    <h2>Formulario</h2>
+    <p>
+        <a href="../index.html">Home</a>
+    </p>
+    <hr>
+    <form action="" method="post">
+        <p>
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" id="nome" placeholder="Digite seu nome" required>
+        </p>
+        <p>
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" id="email" placeholder="Digite seu e-mail" required>
+        </p>
+        <p>
+            <label for="idade">Idade:</label>
+            <input type="number" name="idade" id="idade" placeholder="Digite sua idade" required>
+        </p>
+        <p>
+            <label for="sexo">Sexo:</label>
+            <input type="radio" name="sexo" id="sexo" value="M" required> Masculino
+            <input type="radio" name="sexo" id="sexo" value="F" required> Feminino
+        </p>
+        <p>
+            <label for="cidade">Cidade:</label>
+            <select name="cidade" id="cidade" required>
+                <option value="0"></option>
+                <option value="1">Goiânia</option>
+                <option value="2">Goianira</option>
+                <option value="3">Inhumas</option>
+                <option value="4">Itauçu</option>
+            </select>
+        </p>
+        <p>
+            <label for="interesses">Interesses:</label> <br>
+            <input type="checkbox" name="interesses[]" id="interesses" value="esporte">Esporte
+            <input type="checkbox" name="interesses[]" id="interesses" value="saude">Saúde
+            <input type="checkbox" name="interesses[]" id="interesses" value="musica">Música
+            <input type="checkbox" name="interesses[]" id="interesses" value="tecnologia">Tecnologia
+            <input type="checkbox" name="interesses[]" id="interesses" value="cinema">Cinema
+        </p>
+        <p>
+            <label for="observacoes">Observações pessoais:</label> <br>
+            <textarea name="observacoes" id="observacoes" cols="50" rows="10"></textarea>
+        </p>
+        <p>
+            <input type="submit" id="btnLimpar" value="Limpar">
+            <input type="submit" id="btnSalvar" value="Salvar">
+            <input type="submit" id="btnExcluir" value="Excluir">
+            <input type="submit" id="btnListar" value="Listar">
+            <input type="submit" id="btnCarregar" value="Carregar dados do arquivo">
+        </p>
+        <hr>
+        <table border=".5" cellpadding="3" cellspacing="0">
+            <thead>
+                <tr>
+                    <th bgcolor="gray" width="130">ID</th>
+                    <th bgcolor="gray" width="130">NOME</th>
+                    <th bgcolor="gray" width="130">E-MAIL</th>
+                    <th bgcolor="gray" width="130">IDADE</th>
+                    <th bgcolor="gray" width="130">SEXO</th>
+                    <th bgcolor="gray" width="130">CIDADE</th>
+                </tr>
+            </thead>
+            <tbody id="table">
+                <tr>
+                   <td></td> 
+                   <td></td> 
+                   <td></td> 
+                   <td></td> 
+                   <td></td> 
+                   <td></td> 
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    
+</body>
+</html>
