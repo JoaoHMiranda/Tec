@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Relatórios com Métodos de Array</title>
+</head>
+<body>
+  <h1>Cadastro de Funcionários e Relatórios</h1>
+  
+  <!-- Formulário para cadastrar funcionários -->
+  <form id="formFuncionario">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" required>
+    <br><br>
+    
+    <label for="idade">Idade:</label>
+    <input type="number" id="idade" required>
+    <br><br>
+    
+    <label for="cargo">Cargo:</label>
+    <input type="text" id="cargo" required>
+    <br><br>
+    
+    <label for="salario">Salário:</label>
+    <input type="number" id="salario" step="0.01" required>
+    <br><br>
+    
+    <button type="submit">Cadastrar</button>
+  </form>
+  
+  <!-- Tabela para listagem dos funcionários cadastrados -->
+  <h2>Funcionários Cadastrados</h2>
+  <table border="1" id="tabelaFuncionarios">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Cargo</th>
+        <th>Salário</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Os funcionários serão renderizados aqui -->
+    </tbody>
+  </table>
+  
+  <!-- Botões para gerar os relatórios -->
+  <h2>Relatórios</h2>
+  <button id="btnSalarioMaior">Funcionários com salário > R$5000</button>
+  <button id="btnMediaSalarial">Média salarial</button>
+  <button id="btnCargosUnicos">Funcionários com Cargo Único</button>
+  <button id="btnNomesMaiusculo">Nomes em Maiúsculo (sem repetição)</button>
+  
+  <!-- Área para exibir os relatórios -->
+  <div id="relatorios"></div>
+  
+  <script src="exercicio4.js"></script>
+</body>
+</html>
