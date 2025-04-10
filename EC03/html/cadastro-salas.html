@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadastro de Salas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="btn btn-outline-light me-3" href="index.html">Cinema</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="cadastro-filmes.html">Cadastro de Filmes</a></li>
+          <li class="nav-item"><a class="nav-link active" href="cadastro-salas.html">Cadastro de Salas</a></li>
+          <li class="nav-item"><a class="nav-link" href="cadastro-sessoes.html">Cadastro de Sessões</a></li>
+          <li class="nav-item"><a class="nav-link" href="venda-ingressos.html">Venda de Ingressos</a></li>
+          <li class="nav-item"><a class="nav-link" href="sessoes.html">Sessões Disponíveis</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5 pt-5">
+    <h2>Cadastro de Salas</h2>
+    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#salaModal">Cadastrar Sala</button>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Nome da Sala</th>
+          <th>Capacidade</th>
+          <th>Tipo</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="salasTableBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Modal para Cadastro/Edição de Sala -->
+  <div class="modal fade" id="salaModal" tabindex="-1" aria-labelledby="salaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="formSalaModal">
+          <div class="modal-header">
+            <h5 class="modal-title" id="salaModalLabel">Cadastrar Sala</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="salaIndex" value="">
+            <div class="mb-3">
+              <label for="nomeSala" class="form-label">Nome da Sala</label>
+              <input type="text" class="form-control" id="nomeSala" required>
+            </div>
+            <div class="mb-3">
+              <label for="capacidade" class="form-label">Capacidade</label>
+              <input type="number" class="form-control" id="capacidade" required>
+            </div>
+            <div class="mb-3">
+              <label for="tipoSala" class="form-label">Tipo</label>
+              <select class="form-select" id="tipoSala" required>
+                <option value="">Selecione...</option>
+                <option value="2D">2D</option>
+                <option value="3D">3D</option>
+                <option value="IMAX">IMAX</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-primary">Salvar Sala</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/cadastro-salas.js"></script>
+</body>
+</html>

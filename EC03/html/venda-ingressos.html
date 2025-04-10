@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <!-- Responsividade -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Venda de Ingressos</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- CSS Customizado -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <!-- Botão "Cinema" estilizado -->
+      <a class="btn btn-outline-light me-3" href="index.html">Cinema</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="cadastro-filmes.html">Cadastro de Filmes</a></li>
+          <li class="nav-item"><a class="nav-link" href="cadastro-salas.html">Cadastro de Salas</a></li>
+          <li class="nav-item"><a class="nav-link" href="cadastro-sessoes.html">Cadastro de Sessões</a></li>
+          <li class="nav-item"><a class="nav-link active" href="venda-ingressos.html">Venda de Ingressos</a></li>
+          <li class="nav-item"><a class="nav-link" href="sessoes.html">Sessões Disponíveis</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Conteúdo Principal -->
+  <div class="container mt-5 pt-5">
+    <h2>Venda de Ingressos</h2>
+    <!-- Tabela com Sessões Disponíveis -->
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Filme</th>
+          <th>Sala</th>
+          <th>Data e Hora</th>
+          <th>Preço</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="vendaTableBody">
+        <!-- Linhas serão inseridas via JavaScript -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal para Compra de Ingresso -->
+  <div class="modal fade" id="ingressoModal" tabindex="-1" aria-labelledby="ingressoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="formIngressoModal">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ingressoModalLabel">Comprar Ingresso</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Input oculto para indicar qual sessão está sendo utilizada -->
+            <input type="hidden" id="sessaoIndexCompra" value="">
+            <div class="mb-3">
+              <label for="nomeCliente" class="form-label">Nome do Cliente</label>
+              <input type="text" class="form-control" id="nomeCliente" required>
+            </div>
+            <div class="mb-3">
+              <label for="cpf" class="form-label">CPF</label>
+              <!-- Limita a 11 caracteres e aceita somente números -->
+              <input type="text" class="form-control" id="cpf" maxlength="11" placeholder="Digite apenas 11 números" required pattern="\d{11}">
+            </div>
+            <!-- Campo para escolha de Assentos -->
+            <div class="mb-3">
+              <label for="assento" class="form-label">Assento</label>
+              <input type="text" class="form-control" id="assento" placeholder="Digite ou escolha um assento" autocomplete="off">
+              <!-- Div para exibir sugestões dinâmicas -->
+              <div id="availableSeatsList" class="mt-2"></div>
+              <!-- Container que mostra os assentos selecionados -->
+              <div id="selectedSeatsContainer" class="mt-2"></div>
+              <!-- Exibe o valor total da compra -->
+              <div id="totalPrice" class="mt-2 fw-bold"></div>
+            </div>
+            <div class="mb-3">
+              <label for="pagamento" class="form-label">Tipo de Pagamento</label>
+              <select class="form-select" id="pagamento" required>
+                <option value="">Selecione...</option>
+                <option value="Cartão">Cartão</option>
+                <option value="Pix">Pix</option>
+                <option value="Dinheiro">Dinheiro</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-primary">Confirmar Compra</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- JavaScript específico para Venda de Ingressos -->
+  <script src="../js/venda-ingressos.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadastro de Sessões</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="btn btn-outline-light me-3" href="index.html">Cinema</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="cadastro-filmes.html">Cadastro de Filmes</a></li>
+          <li class="nav-item"><a class="nav-link" href="cadastro-salas.html">Cadastro de Salas</a></li>
+          <li class="nav-item"><a class="nav-link active" href="cadastro-sessoes.html">Cadastro de Sessões</a></li>
+          <li class="nav-item"><a class="nav-link" href="venda-ingressos.html">Venda de Ingressos</a></li>
+          <li class="nav-item"><a class="nav-link" href="sessoes.html">Sessões Disponíveis</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Conteúdo Principal -->
+  <div class="container mt-5 pt-5">
+    <h2>Cadastro de Sessões</h2>
+    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#sessaoModal">Cadastrar Sessão</button>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Filme</th>
+          <th>Sala</th>
+          <th>Data e Hora</th>
+          <th>Preço</th>
+          <th>Idioma</th>
+          <th>Formato</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="sessoesTableBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Modal para Cadastro/Edição de Sessões -->
+  <div class="modal fade" id="sessaoModal" tabindex="-1" aria-labelledby="sessaoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="formSessaoModal">
+          <div class="modal-header">
+            <h5 class="modal-title" id="sessaoModalLabel">Cadastrar Sessão</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="sessaoIndex" value="">
+            <div class="mb-3">
+              <label for="filmeSelect" class="form-label">Filme</label>
+              <select class="form-select" id="filmeSelect" required>
+                <option value="">Selecione...</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="salaSelect" class="form-label">Sala</label>
+              <select class="form-select" id="salaSelect" required>
+                <option value="">Selecione...</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="dataHora" class="form-label">Data e Hora</label>
+              <input
+                type="datetime-local"
+                class="form-control"
+                id="dataHora"
+                required
+                max="9999-12-31T23:59"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="preco" class="form-label">Preço</label>
+              <input type="number" class="form-control" id="preco" step="0.01" required>
+            </div>
+            <div class="mb-3">
+              <label for="idioma" class="form-label">Idioma</label>
+              <select class="form-select" id="idioma" required>
+                <option value="">Selecione...</option>
+                <option value="Dublado">Dublado</option>
+                <option value="Legendado">Legendado</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="formato" class="form-label">Formato</label>
+              <select class="form-select" id="formato" required>
+                <option value="">Selecione...</option>
+                <option value="2D">2D</option>
+                <option value="3D">3D</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-primary">Salvar Sessão</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/cadastro-sessoes.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+/* /css/style.css */
+
+body {
+    padding-top: 70px; /* Espaço para o menu fixo */
+  }
+  
+  .container {
+    max-width: 800px;
+  }
+  

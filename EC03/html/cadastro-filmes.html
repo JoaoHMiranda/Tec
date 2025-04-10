@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadastro de Filmes</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- CSS customizado -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="btn btn-outline-light me-3" href="index.html">Cinema</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="cadastro-filmes.html">Cadastro de Filmes</a></li>
+          <li class="nav-item"><a class="nav-link" href="cadastro-salas.html">Cadastro de Salas</a></li>
+          <li class="nav-item"><a class="nav-link" href="cadastro-sessoes.html">Cadastro de Sessões</a></li>
+          <li class="nav-item"><a class="nav-link" href="venda-ingressos.html">Venda de Ingressos</a></li>
+          <li class="nav-item"><a class="nav-link" href="sessoes.html">Sessões Disponíveis</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Conteúdo Principal -->
+  <div class="container mt-5 pt-5">
+    <h2>Cadastro de Filmes</h2>
+    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#filmeModal">Cadastrar Filme</button>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Descrição</th>
+          <th>Gênero</th>
+          <th>Classificação</th>
+          <th>Duração</th>
+          <th>Estreia</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="filmesTableBody">
+        <!-- Linhas serão inseridas via JavaScript -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal para Cadastro/Edição de Filme -->
+  <div class="modal fade" id="filmeModal" tabindex="-1" aria-labelledby="filmeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="formFilmeModal">
+          <div class="modal-header">
+            <h5 class="modal-title" id="filmeModalLabel">Cadastrar Filme</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Campo oculto para edição -->
+            <input type="hidden" id="filmeIndex" value="">
+            <div class="mb-3">
+              <label for="titulo" class="form-label">Título</label>
+              <input type="text" class="form-control" id="titulo" required>
+            </div>
+            <div class="mb-3">
+              <label for="descricao" class="form-label">Descrição</label>
+              <textarea class="form-control" id="descricao" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="genero" class="form-label">Gênero</label>
+              <select class="form-select" id="genero" required>
+                <option value="">Selecione...</option>
+                <option value="Ação">Ação</option>
+                <option value="Comédia">Comédia</option>
+                <option value="Drama">Drama</option>
+                <option value="Terror">Terror</option>
+                <option value="Romance">Romance</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="classificacao" class="form-label">Classificação Indicativa</label>
+              <select class="form-select" id="classificacao" required>
+                <option value="">Selecione...</option>
+                <option value="Livre">Livre</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="14">14</option>
+                <option value="16">16</option>
+                <option value="18">18</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="duracao" class="form-label">Duração (minutos)</label>
+              <input type="number" class="form-control" id="duracao" required>
+            </div>
+            <div class="mb-3">
+              <label for="estreia" class="form-label">Data de Estreia</label>
+              <input type="date" class="form-control" id="estreia" required max="9999-12-31">
+            </div>
+            <div class="mb-3">
+              <label for="imagemFilme" class="form-label">Imagem do Filme (opcional)</label>
+              <input type="file" class="form-control" id="imagemFilme" accept="image/*">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-primary">Salvar Filme</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/cadastro-filmes.js"></script>
+</body>
+</html>
