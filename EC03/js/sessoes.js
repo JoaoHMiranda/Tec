@@ -1,4 +1,4 @@
-// Formata data/hora para o padrão brasileiro "dd/mm/aaaa HH:mm" com ano de 4 dígitos.
+// Função para formatar a data e hora no formato brasileiros
 function formatBrazilianDateTime(isoString) {
   if (!isoString) return "";
   const date = new Date(isoString);
