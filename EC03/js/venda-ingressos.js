@@ -1,3 +1,5 @@
+// venda-ingressos.js
+
 // Função para formatar a data/hora no formato brasileiro (DD/MM/AAAA HH:MM)
 function formatBrazilianDateTime(isoString) {
   if (!isoString) return "";
@@ -48,7 +50,7 @@ function refreshVendaTable() {
     // Utiliza a função para formatar a data/hora
     const formattedDateTime = formatBrazilianDateTime(sessao.dataHora);
     
-    // Verifica os assentos disponíveis para a sessão (sem considerar a seleção atual)
+    // Verifica os assentos disponíveis para a sessão
     const availableSeats = getAvailableSeatsForSession(index);
     let actionHtml = "";
     if (availableSeats.length > 0) {
@@ -76,8 +78,6 @@ let selectedSeats = [];
 
 /**
  * Calcula os assentos disponíveis para uma sessão.
- * Usa a capacidade da sala (assumindo que os assentos são numerados de 1 até a capacidade)
- * e remove os assentos já vendidos e os que já foram selecionados nesta compra.
  */
 function getAvailableSeatsForSession(sessionIndex) {
   const sessoes = getSessoes();
@@ -109,7 +109,6 @@ function getAvailableSeatsForSession(sessionIndex) {
 
 /**
  * Atualiza a lista de sugestões de assentos disponíveis com base no input.
- * Se o campo estiver vazio, exibe todas as opções disponíveis.
  */
 function updateAvailableSeatsList() {
   const inputValue = document.getElementById('assento').value;
@@ -123,7 +122,7 @@ function updateAvailableSeatsList() {
   
   const availableSeats = getAvailableSeatsForSession(sessionIndex);
   
-  // Se houver texto digitado, filtra os assentos; caso contrário, mostra todos disponíveis
+  // Filtra os assentos se houver texto digitado
   const filteredSeats = inputValue.trim() === "" 
     ? availableSeats 
     : availableSeats.filter(seat => seat.includes(inputValue));
@@ -150,8 +149,7 @@ function updateAvailableSeatsList() {
 }
 
 /**
- * Atualiza a interface dos assentos selecionados, exibindo cada um como badge com botão "x" para remoção.
- * Também atualiza o valor total da compra.
+ * Atualiza a interface dos assentos selecionados.
  */
 function updateSelectedSeatsUI() {
   const container = document.getElementById('selectedSeatsContainer');
@@ -170,12 +168,11 @@ function updateSelectedSeatsUI() {
     span.appendChild(removeBtn);
     container.appendChild(span);
   });
-  // Atualiza o total da compra
   updateTotal();
 }
 
 /**
- * Calcula e exibe o valor total da compra: preço da sessão multiplicado pela quantidade de assentos selecionados.
+ * Calcula e exibe o valor total da compra.
  */
 function updateTotal() {
   const sessionIndex = document.getElementById('sessaoIndexCompra').value;
@@ -194,7 +191,7 @@ function updateTotal() {
 }
 
 /**
- * Adiciona um assento ao array de selecionados (se não duplicado) e atualiza a interface.
+ * Adiciona um assento selecionado à lista.
  */
 function addSelectedSeat(seat) {
   if (!selectedSeats.includes(seat)) {
@@ -205,7 +202,7 @@ function addSelectedSeat(seat) {
 }
 
 /**
- * Remove um assento do array de selecionados e atualiza a interface.
+ * Remove um assento da lista dos selecionados.
  */
 function removeSelectedSeat(seat) {
   selectedSeats = selectedSeats.filter(s => s !== seat);
@@ -213,9 +210,11 @@ function removeSelectedSeat(seat) {
   updateAvailableSeatsList();
 }
 
-/* ======= FIM DAS FUNÇÕES DE ASSENTOS ======= */
+/* ======= ABRIR A MODAL DE COMPRA ======= */
 
-// Abre a modal de compra: reseta a seleção e exibe os assentos disponíveis
+/**
+ * Abre a modal de compra: reseta a seleção, atualiza a UI e exibe o modal.
+ */
 function openCompra(index) {
   document.getElementById('sessaoIndexCompra').value = index;
   document.getElementById('assento').value = "";
@@ -227,10 +226,14 @@ function openCompra(index) {
   myModal.show();
 }
 
+/* ======= EVENTOS DE INPUT ======= */
+
 // Atualiza as sugestões enquanto o usuário digita no input
 document.getElementById('assento').addEventListener('input', updateAvailableSeatsList);
 // Ao focar no campo, se estiver vazio, exibe todas as opções disponíveis
 document.getElementById('assento').addEventListener('focus', updateAvailableSeatsList);
+
+/* ======= ENVIO DO FORMULÁRIO DE COMPRA ======= */
 
 // Evento de envio do formulário para compra de ingresso
 document.getElementById('formIngressoModal').addEventListener('submit', function(e) {
@@ -276,9 +279,20 @@ document.getElementById('formIngressoModal').addEventListener('submit', function
   modal.hide();
 });
 
-// Quando a modal é fechada, reseta os campos, a seleção e o total
+/* ======= RESETAR CAMPOS AO FECHAR A MODAL ======= */
+
 document.addEventListener('DOMContentLoaded', function() {
   refreshVendaTable();
+  
+  // Captura o parâmetro 'sessao' na URL para abrir automaticamente a área de compra
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('sessao')) {
+    const sessaoIndex = parseInt(params.get('sessao'));
+    if (!isNaN(sessaoIndex)) {
+      openCompra(sessaoIndex);
+    }
+  }
+  
   const ingressoModalEl = document.getElementById('ingressoModal');
   ingressoModalEl.addEventListener('hidden.bs.modal', function () {
     document.getElementById('formIngressoModal').reset();
